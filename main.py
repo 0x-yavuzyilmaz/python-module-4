@@ -1,28 +1,26 @@
-# Alıştırma 1
-kelimeler = ["python", "öğrenmek", "çok", "güzel"]
-print([len(kelime) for kelime in kelimeler])
+# Alıştırma 4
+urun_stoklari = {"elma": 50, "muz": 30, "portakal": 0, "karpuz": 15}
 
-# Alıştırma 2
+tukenmis_urunler = [anahtar.upper() for anahtar, deger in urun_stoklari.items() if deger == 0]
 
-sayilar = [1, -5, 12, -8, 15, 2, -10, 7]
-pozitiflerin_iki_kati = [sayi * 2 for sayi in sayilar if sayi > 0]
-print(pozitiflerin_iki_kati)
-
-# Alıştırma 3
-fiyatlar = [100, 150, 80, 220, 50, 400]
-
-etiketler = ["Pahalı" if fiyat > 100 else "Uygun" for fiyat in fiyatlar]
-print(etiketler)
-
-# Bonus.
-
-ic_ice_liste = [[1, 2, 3], [4, 5], [6, 7, 8, 9]]
-
-tek_liste = [eleman for liste in ic_ice_liste for eleman in liste]
-print(tek_liste)
+print(tukenmis_urunler)
 
 
 
+# Alıştırma 5
+
+cumleler = ["Python öğrenmek harika", "List comprehension çok güçlü bir araç", "Veri bilimi eğlenceli"]
+
+a_iceren_uzun_kelimeler = [kelime for cumle in cumleler for kelime in cumle.split() if
+                           len(kelime) > 5 and "a" in kelime]
+print(a_iceren_uzun_kelimeler)
 
 
+# Alıştırma 6.
 
+matris = [[1, 2, 3],
+          [4, 5, 6],
+          [7, 8, 9]]
+
+transpose_matris = [[satir[sutun_indeksi] for satir in matris] for sutun_indeksi in range(len(matris[0]))]
+print(transpose_matris)
