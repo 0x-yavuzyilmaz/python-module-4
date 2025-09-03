@@ -1,61 +1,28 @@
-# Alıştırma 1 (Kolay): İsim Düzeltici
+# Alıştırma 1
+kelimeler = ["python", "öğrenmek", "çok", "güzel"]
+print([len(kelime) for kelime in kelimeler])
 
-isimler = [" aLi ", "VELİ ", "\tayşe\n", " fatma"]
-temiz_isimler = []
-for isim in isimler:
-    temiz_isimler.append(isim.strip().lower().title())
+# Alıştırma 2
 
-print(temiz_isimler)
+sayilar = [1, -5, 12, -8, 15, 2, -10, 7]
+pozitiflerin_iki_kati = [sayi * 2 for sayi in sayilar if sayi > 0]
+print(pozitiflerin_iki_kati)
 
+# Alıştırma 3
+fiyatlar = [100, 150, 80, 220, 50, 400]
 
-# Alıştırma 2 (Orta Zorluk): URL Oluşturucu ("Slugify")
+etiketler = ["Pahalı" if fiyat > 100 else "Uygun" for fiyat in fiyatlar]
+print(etiketler)
 
-def slugify(baslik: str) -> str:
-    baslik = (baslik.strip().lower().replace("ğ", "g").replace("ı", "i").
-              replace("ü", "u").replace("ö", "o")
-              .replace("ç", "c").replace("ş", "s"))
-    baslik_liste = baslik.split()
-    baslik_slug = "-".join(baslik_liste)
-    return baslik_slug
+# Bonus.
 
+ic_ice_liste = [[1, 2, 3], [4, 5], [6, 7, 8, 9]]
 
-ornek_baslik = " Python Öğrenmek ne kadar da Güzel! "
-
-print(slugify(ornek_baslik))
+tek_liste = [eleman for liste in ic_ice_liste for eleman in liste]
+print(tek_liste)
 
 
-def slugify_pythonic(baslik: str) -> str:
-    baslik = baslik.lower().strip()
-    karakter_haritasi = {
-        "ğ": "g",
-        "ı": "i",
-        "ş": "s",
-        "ö": "o",
-        "ü": "u",
-        "ç": "c"
-    }
-    for eski, yeni in karakter_haritasi.items():
-        baslik = baslik.replace(eski, yeni)
-    baslik_liste = baslik.split()
-    baslik_slug = "-".join(baslik_liste)
-    return baslik_slug
 
 
-print(slugify_pythonic(ornek_baslik))
 
-# Alıştırma 3 (İleri Seviye): Veri Ayıklayıcı
 
-ham_veri = """ isim|soyisim|yas|sehir Ali|Yılmaz|30|İstanbul Ayşe|Kaya|25|Ankara Veli|Can|45|İzmir """
-islenmis_veri = ham_veri.strip()
-satirlar = islenmis_veri.split(" ")
-basliklar = satirlar[0].split("|")
-degerler_listesi = []
-
-for kisi in satirlar[1:]:
-    degerler_listesi.append(kisi.split("|"))
-
-for kisi in degerler_listesi:
-    for indeks in range(len(kisi)):
-        print(f"{basliklar[indeks].title()}: {kisi[indeks]}", end=", ")
-
-    print("\n")
