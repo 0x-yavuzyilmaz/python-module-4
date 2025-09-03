@@ -1,65 +1,61 @@
-# Alıştırma 1 (Kolay): Tekrar Edenleri Temizle
+# Alıştırma 1 (Kolay): İsim Düzeltici
 
-siparis_kodlari = [101, 102, 103, 101, 104, 102, 105, 106, 103]
-print(f"Veri Kümesi: {set(siparis_kodlari)}, Veri Tipi: {type(set(siparis_kodlari))}")
+isimler = [" aLi ", "VELİ ", "\tayşe\n", " fatma"]
+temiz_isimler = []
+for isim in isimler:
+    temiz_isimler.append(isim.strip().lower().title())
 
-python_kursu = {"Ali", "Veli", "Ayşe", "Fatma", "Can"}
-web_gelistirme_kursu = {"Zeynep", "Buse", "Ali", "Can", "Mehmet"}
-
-
-# Alıştırma 2
+print(temiz_isimler)
 
 
-def yazdir(kume: set, baslik: str) -> None:
-    print(baslik)
-    print("-" * 25)
-    for ogrenci in kume:
-        print(ogrenci)
-    print("-" * 25)
+# Alıştırma 2 (Orta Zorluk): URL Oluşturucu ("Slugify")
+
+def slugify(baslik: str) -> str:
+    baslik = (baslik.strip().lower().replace("ğ", "g").replace("ı", "i").
+              replace("ü", "u").replace("ö", "o")
+              .replace("ç", "c").replace("ş", "s"))
+    baslik_liste = baslik.split()
+    baslik_slug = "-".join(baslik_liste)
+    return baslik_slug
+
+
+ornek_baslik = " Python Öğrenmek ne kadar da Güzel! "
+
+print(slugify(ornek_baslik))
+
+
+def slugify_pythonic(baslik: str) -> str:
+    baslik = baslik.lower().strip()
+    karakter_haritasi = {
+        "ğ": "g",
+        "ı": "i",
+        "ş": "s",
+        "ö": "o",
+        "ü": "u",
+        "ç": "c"
+    }
+    for eski, yeni in karakter_haritasi.items():
+        baslik = baslik.replace(eski, yeni)
+    baslik_liste = baslik.split()
+    baslik_slug = "-".join(baslik_liste)
+    return baslik_slug
+
+
+print(slugify_pythonic(ornek_baslik))
+
+# Alıştırma 3 (İleri Seviye): Veri Ayıklayıcı
+
+ham_veri = """ isim|soyisim|yas|sehir Ali|Yılmaz|30|İstanbul Ayşe|Kaya|25|Ankara Veli|Can|45|İzmir """
+islenmis_veri = ham_veri.strip()
+satirlar = islenmis_veri.split(" ")
+basliklar = satirlar[0].split("|")
+degerler_listesi = []
+
+for kisi in satirlar[1:]:
+    degerler_listesi.append(kisi.split("|"))
+
+for kisi in degerler_listesi:
+    for indeks in range(len(kisi)):
+        print(f"{basliklar[indeks].title()}: {kisi[indeks]}", end=", ")
+
     print("\n")
-
-
-kesisim_kurs = python_kursu.intersection(web_gelistirme_kursu)
-birlesim_kurs = python_kursu.union(web_gelistirme_kursu)
-yalniz_python = python_kursu.difference(web_gelistirme_kursu)
-
-yazdir(kesisim_kurs, "Her iki kursa birden katılan öğrenciler:")
-yazdir(birlesim_kurs, "Her iki kursa birden katılan öğrenciler:")
-yazdir(yalniz_python, "Yalnız python kursuna katılan öğrenciler:")
-
-
-# Alıştırma 3
-
-def pangram_tester(cumle: str) -> None:
-    """
-    Verilen cümlenin pangram olup olmadığını test eder.
-    Args:
-        cumle(str):
-
-    Returns:
-        None
-
-    """
-    alfabe = set("abcdefghijklmnopqrstuvwxyz")
-    set(cumle.lower())
-    cumle_kumesi = set()
-
-    for harf in set(cumle.lower()):
-        if harf == " ":
-            continue
-        else:
-            cumle_kumesi.add(harf)
-
-    fark_kumesi = alfabe.difference(cumle_kumesi)
-    if not fark_kumesi:
-        print("Cümle bir pangramdır.")
-    else:
-        print(f"Cümle bir pangram değildir.Eksik olan harfler:")
-        for harf in fark_kumesi:
-            print(f"--{harf}--")
-
-
-cumle = "the quick brown fox jumps over the lazy dog"
-cumle2 = "merhaba dunya"
-pangram_tester(cumle)
-pangram_tester(cumle2)
