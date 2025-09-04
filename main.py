@@ -1,28 +1,36 @@
-# Alıştırma 1
-us_al = lambda x, y: x ** y
-print(us_al(5, 3))
+# ALIŞTIRMA 1
+isimler = [" ali", "VELİ ", " ayşe\n"]
+isimler_map = map(lambda isim: isim.strip().title(), isimler)
+isimler_list = list(isimler_map)
+print(isimler_list)
+
+isimler_list_comp = [isim.strip().title() for isim in isimler_list]
+print(isimler_list_comp)
 
 # Alıştırma 2
+
 urunler = [
-    {"isim": "Laptop", "fiyat": 25000, "stok": 15},
-    {"isim": "Mouse", "fiyat": 250, "stok": 150},
-    {"isim": "Klavye", "fiyat": 500, "stok": 80}
+    {"isim": "Laptop", "fiyat": 25000},
+    {"isim": "Mouse", "fiyat": 250},
+    {"isim": "Klavye", "fiyat": 500},
+    {"isim": "Monitör", "fiyat": 3000}
 ]
 
-fiyatlarina_gore_urunler = sorted(urunler, key=lambda urun: urun["fiyat"])
+urunler_filter_nesne = filter(lambda urun: urun["fiyat"] < 1000, urunler)
+urunler_filter_liste = list(urunler_filter_nesne)
+print(urunler_filter_liste)
 
-for urun in fiyatlarina_gore_urunler:
-    print(urun)
+urunler_list_comp = [urun for urun in urunler if urun["fiyat"] < 1000]
+print(urunler_list_comp)
 
-print("\n")
+#Alıştırma 3
+sayilar = [-10, 5, 0, -2, 8, -1, 3]
 
-stoklarina_gore_isimler = sorted(urunler, key=lambda urun: urun["stok"], reverse=True)
-for urun in stoklarina_gore_isimler:
-    print(urun)
+filter_pozitif = filter(lambda x: x <= 0, sayilar)
+map_n_to_p = map(lambda x: -x, filter_pozitif)
+liste = list(map_n_to_p)
+print(liste)
 
-# Alıştırma 3
-noktalar = [(1, 5), (3, 2), (10, 1), (4, 4), (2, 8)]
-
-orjine_uzaklik = sorted(noktalar, key=lambda nokta: nokta[0] ** 2 + nokta[1] ** 2)
-print(orjine_uzaklik)
+list_comp_liste = [abs(x) for x in sayilar if x <= 0]
+print(list_comp_liste)
 
