@@ -1,28 +1,28 @@
-# Alıştırma 1 (Kolay): Basit Sıralama
-
-sayilar = [4, 1, 7, 3, 9, 2, 8, 5, 6]
-sayilar.sort()
-print(f"Küçükten büyüğe: {sayilar}")
-sayilar.sort(reverse=True)
-print(f"Büyükten küçüğe: {sayilar}")
+# Alıştırma 1
+us_al = lambda x, y: x ** y
+print(us_al(5, 3))
 
 # Alıştırma 2
-kelimeler = ["elma", "Karpuz", "muz", "Armut", "çilek"]
-alfabetik_sirali_liste = sorted(kelimeler, key=str.lower)
-print(alfabetik_sirali_liste)
-uzunluga_gore_liste = sorted(kelimeler, key=len)
-print(uzunluga_gore_liste)
+urunler = [
+    {"isim": "Laptop", "fiyat": 25000, "stok": 15},
+    {"isim": "Mouse", "fiyat": 250, "stok": 150},
+    {"isim": "Klavye", "fiyat": 500, "stok": 80}
+]
+
+fiyatlarina_gore_urunler = sorted(urunler, key=lambda urun: urun["fiyat"])
+
+for urun in fiyatlarina_gore_urunler:
+    print(urun)
+
+print("\n")
+
+stoklarina_gore_isimler = sorted(urunler, key=lambda urun: urun["stok"], reverse=True)
+for urun in stoklarina_gore_isimler:
+    print(urun)
 
 # Alıştırma 3
-ogrenciler = [["Ali", 85], ["Zeynep", 92], ["Can", 78], ["Ayşe", 92], ["Veli", 85]]
+noktalar = [(1, 5), (3, 2), (10, 1), (4, 4), (2, 8)]
 
-def ilk_eleman(liste):
-    return liste[1]
+orjine_uzaklik = sorted(noktalar, key=lambda nokta: nokta[0] ** 2 + nokta[1] ** 2)
+print(orjine_uzaklik)
 
-alf_sirali_liste = sorted(ogrenciler, key=ilk_eleman, reverse=True)
-print(alf_sirali_liste)
-
-def detayli_sirali(liste):
-    return -liste[1],liste[0]
-alf_detayli_sirali_liste=sorted(ogrenciler, key=detayli_sirali)
-print(alf_detayli_sirali_liste)
