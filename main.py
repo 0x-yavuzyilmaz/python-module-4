@@ -1,36 +1,43 @@
-# ALIŞTIRMA 1
-isimler = [" ali", "VELİ ", " ayşe\n"]
-isimler_map = map(lambda isim: isim.strip().title(), isimler)
-isimler_list = list(isimler_map)
-print(isimler_list)
+# Alıştırma 1
+from collections import defaultdict
 
-isimler_list_comp = [isim.strip().title() for isim in isimler_list]
-print(isimler_list_comp)
+renkler = ["kırmızı", "mavi", "yeşil", "kırmızı", "sarı", "mavi", "kırmızı"]
+renkler_sayaci = defaultdict(int)
+for renk in renkler:
+    renkler_sayaci[renk] += 1
+
+print(renkler_sayaci)
 
 # Alıştırma 2
+from collections import defaultdict
 
-urunler = [
-    {"isim": "Laptop", "fiyat": 25000},
-    {"isim": "Mouse", "fiyat": 250},
-    {"isim": "Klavye", "fiyat": 500},
-    {"isim": "Monitör", "fiyat": 3000}
+metin = "programlama"
+harf_konumlari = defaultdict(list)
+
+for indeks, harf in enumerate(metin):
+    harf_konumlari[harf].append(indeks)
+print(harf_konumlari)
+
+# Alıştırma 3
+from collections import defaultdict
+
+mac_sonuclari = [
+    ("Galatasaray", 3),
+    ("Fenerbahçe", 1),
+    ("Beşiktaş", 3),
+    ("Galatasaray", 1),
+    ("Fenerbahçe", 3),
+    ("Galatasaray", 3)
 ]
 
-urunler_filter_nesne = filter(lambda urun: urun["fiyat"] < 1000, urunler)
-urunler_filter_liste = list(urunler_filter_nesne)
-print(urunler_filter_liste)
+puan_tablosu = defaultdict(int)
 
-urunler_list_comp = [urun for urun in urunler if urun["fiyat"] < 1000]
-print(urunler_list_comp)
+for mac_sonucu in mac_sonuclari:
+    takim, puan = mac_sonucu
+    puan_tablosu[takim] += puan
 
-#Alıştırma 3
-sayilar = [-10, 5, 0, -2, 8, -1, 3]
+print("--- PUAN TABLOSU ---")
+for takim, puan in puan_tablosu.items():
+    print(f"{takim:<12}: {puan}")
 
-filter_pozitif = filter(lambda x: x <= 0, sayilar)
-map_n_to_p = map(lambda x: -x, filter_pozitif)
-liste = list(map_n_to_p)
-print(liste)
-
-list_comp_liste = [abs(x) for x in sayilar if x <= 0]
-print(list_comp_liste)
 
