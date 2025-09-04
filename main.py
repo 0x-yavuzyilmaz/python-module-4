@@ -1,26 +1,28 @@
-# Alıştırma 4
-urun_stoklari = {"elma": 50, "muz": 30, "portakal": 0, "karpuz": 15}
+# Alıştırma 1 (Kolay): Basit Sıralama
 
-tukenmis_urunler = [anahtar.upper() for anahtar, deger in urun_stoklari.items() if deger == 0]
+sayilar = [4, 1, 7, 3, 9, 2, 8, 5, 6]
+sayilar.sort()
+print(f"Küçükten büyüğe: {sayilar}")
+sayilar.sort(reverse=True)
+print(f"Büyükten küçüğe: {sayilar}")
 
-print(tukenmis_urunler)
+# Alıştırma 2
+kelimeler = ["elma", "Karpuz", "muz", "Armut", "çilek"]
+alfabetik_sirali_liste = sorted(kelimeler, key=str.lower)
+print(alfabetik_sirali_liste)
+uzunluga_gore_liste = sorted(kelimeler, key=len)
+print(uzunluga_gore_liste)
 
+# Alıştırma 3
+ogrenciler = [["Ali", 85], ["Zeynep", 92], ["Can", 78], ["Ayşe", 92], ["Veli", 85]]
 
+def ilk_eleman(liste):
+    return liste[1]
 
-# Alıştırma 5
+alf_sirali_liste = sorted(ogrenciler, key=ilk_eleman, reverse=True)
+print(alf_sirali_liste)
 
-cumleler = ["Python öğrenmek harika", "List comprehension çok güçlü bir araç", "Veri bilimi eğlenceli"]
-
-a_iceren_uzun_kelimeler = [kelime for cumle in cumleler for kelime in cumle.split() if
-                           len(kelime) > 5 and "a" in kelime]
-print(a_iceren_uzun_kelimeler)
-
-
-# Alıştırma 6.
-
-matris = [[1, 2, 3],
-          [4, 5, 6],
-          [7, 8, 9]]
-
-transpose_matris = [[satir[sutun_indeksi] for satir in matris] for sutun_indeksi in range(len(matris[0]))]
-print(transpose_matris)
+def detayli_sirali(liste):
+    return -liste[1],liste[0]
+alf_detayli_sirali_liste=sorted(ogrenciler, key=detayli_sirali)
+print(alf_detayli_sirali_liste)
