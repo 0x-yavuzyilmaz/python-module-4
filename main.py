@@ -1,5 +1,8 @@
 import fonksiyonlar as fn
 import time
+    """
+    Kelime Frekans Analizörü programının ana pipeline programı.
+    """
 
 BASLIK = "Kelime Frekans Analizörü"
 GENISLIK = 60
@@ -12,8 +15,12 @@ print(f"{AYRAC}\n")
 print("Lütfen aşağıdaki yönergeleri dikkatle takip ediniz.".center(GENISLIK))
 print("\n")
 
-dosya_yolu = input("Dosya yolu giriniz: ")
-metin = fn.dosyayi_oku(dosya_yolu)
+while True:
+    dosya_yolu = input("Dosya yolu giriniz: ")
+    metin = fn.dosyayi_oku(dosya_yolu)
+    if metin is not None:
+        break
+
 temizlenmis_metin = fn.metni_temizle(metin)
 kelime_sayisi_counter = fn.kelimeleri_say(temizlenmis_metin)
 time.sleep(1)
