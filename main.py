@@ -1,43 +1,37 @@
-# Alıştırma 1
-from collections import defaultdict
+import fonksiyonlar as fn
+import time
 
-renkler = ["kırmızı", "mavi", "yeşil", "kırmızı", "sarı", "mavi", "kırmızı"]
-renkler_sayaci = defaultdict(int)
-for renk in renkler:
-    renkler_sayaci[renk] += 1
+BASLIK = "Kelime Frekans Analizörü"
+GENISLIK = 60
+AYRAC = "=" * GENISLIK
 
-print(renkler_sayaci)
+print(f"\n{AYRAC}")
+print(f"{BASLIK.center(GENISLIK)}")
+print(f"{'Programına Hoş Geldiniz!'.center(GENISLIK)}")
+print(f"{AYRAC}\n")
+print("Lütfen aşağıdaki yönergeleri dikkatle takip ediniz.".center(GENISLIK))
+print("\n")
 
-# Alıştırma 2
-from collections import defaultdict
+dosya_yolu = input("Dosya yolu giriniz: ")
+metin = fn.dosyayi_oku(dosya_yolu)
+temizlenmis_metin = fn.metni_temizle(metin)
+kelime_sayisi_counter = fn.kelimeleri_say(temizlenmis_metin)
+time.sleep(1)
+print("İstenmeyen kelimeleri giriniz. (Bitirmek için doğrudan Enter'a basınız)")
 
-metin = "programlama"
-harf_konumlari = defaultdict(list)
+istenmeyen_kelimeler = set()
+while True:
+    kelime = input("İstenmeyen Kelime: ")
+    if kelime == "":
+        break
+    istenmeyen_kelimeler.add(kelime)
+print("\nOluşturulan istenmeyen kelimeler kümesi:")
+print(istenmeyen_kelimeler)
+time.sleep(1)
+print("\n")
 
-for indeks, harf in enumerate(metin):
-    harf_konumlari[harf].append(indeks)
-print(harf_konumlari)
+frekanslar = fn.istenmeyenleri_cikar(kelime_sayisi_counter, istenmeyen_kelimeler)
+en_fazla_sinirla = int(input("En fazla kaç kelimenin sıklığını göstermek istersiniz:\n"))
+fn.sonucu_goster(frekanslar, en_fazla_sinirla)
 
-# Alıştırma 3
-from collections import defaultdict
-
-mac_sonuclari = [
-    ("Galatasaray", 3),
-    ("Fenerbahçe", 1),
-    ("Beşiktaş", 3),
-    ("Galatasaray", 1),
-    ("Fenerbahçe", 3),
-    ("Galatasaray", 3)
-]
-
-puan_tablosu = defaultdict(int)
-
-for mac_sonucu in mac_sonuclari:
-    takim, puan = mac_sonucu
-    puan_tablosu[takim] += puan
-
-print("--- PUAN TABLOSU ---")
-for takim, puan in puan_tablosu.items():
-    print(f"{takim:<12}: {puan}")
-
-
+print(f"\n{AYRAC}")
